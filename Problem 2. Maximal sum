@@ -1,0 +1,44 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+       // Console.WriteLine("Please enter n :");
+       // int n = int.Parse(Console.ReadLine());
+       // Console.WriteLine("Please enter m :");
+       // int m = int.Parse(Console.ReadLine());
+        int[,] matrix = {
+                            {1,2,3,4,5,6,7},
+                            {9,8,7,6,5,4,3},
+                            {3,4,5,6,7,8,9},
+                            {2,3,5,6,8,9,7},
+                            {9,8,7,6,5,3,2}
+                        };
+        int sum = 0;
+        int maxSum = 0;
+        int maxRow = 0;
+        int maxCol = 0;
+        for (int row = 0; row < matrix.GetLength(0)-2; row++)
+        {
+            for (int col = 0; col < matrix.GetLength(1)-2; col++)
+            {
+                sum=matrix[row,col]+matrix[row,col+1]+matrix[row,col+2]+
+                    matrix[row+1,col]+matrix[row+1,col+1]+matrix[row+1,col+2]+
+                    matrix[row+2,col]+matrix[row+2,col+1]+matrix[row+2,col+2];
+                if (sum>maxSum)
+                {
+                    maxSum = sum;
+                    maxRow = row;
+                    maxCol = col;
+                }
+            }
+            
+        }
+        Console.WriteLine("Max Sum is: {0}",maxSum);
+        Console.WriteLine("{0} {1} {2}", matrix[maxRow, maxCol], matrix[maxRow, maxCol + 1], matrix[maxRow, maxCol + 2]);
+        Console.WriteLine("{0} {1} {2}", matrix[maxRow+1, maxCol], matrix[maxRow+1, maxCol + 1], matrix[maxRow+1, maxCol + 2]);
+        Console.WriteLine("{0} {1} {2}", matrix[maxRow+2, maxCol], matrix[maxRow+2, maxCol + 1], matrix[maxRow+2, maxCol + 2]);
+    }
+}
+
